@@ -507,9 +507,9 @@ namespace SPTaxonomyToolsOnline
 
                             int i = 1;
 
-                            foreach (var line in sb.ToString().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
+                            foreach (var line in sb.ToString().Split(new string[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries))
                             {
-                                var curLineObjs = line.Split("\t".ToCharArray());
+                                var curLineObjs = line.Split(new string[] {"\t"}, StringSplitOptions.None);
 
                                 for (int j = 1; j <= curLineObjs.Length; j++)
                                 {
@@ -538,7 +538,7 @@ namespace SPTaxonomyToolsOnline
                     {
                         // export to screen
                         tcout("---------------------------------------------");
-                        foreach (var line in sb.ToString().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
+                        foreach (var line in sb.ToString().Split(new string[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries))
                         {
                             tcout(line);
                         }
@@ -694,9 +694,9 @@ namespace SPTaxonomyToolsOnline
 
                             i = 2;
 
-                            foreach (var line in sb.ToString().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
+                            foreach (var line in sb.ToString().Split(new string[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries))
                             {
-                                var curLineObjs = line.Split("\t".ToCharArray());
+                                var curLineObjs = line.Split(new string[] {"\t"}, StringSplitOptions.None);
 
                                 for (int j = 1; j <= curLineObjs.Length; j++)
                                 {
@@ -728,7 +728,7 @@ namespace SPTaxonomyToolsOnline
                         tcout("---------------------------------------------");
                         tcout("Counter\tTermId\tParentTermId\tTermPath\tTermName\tDescr\tIsAvailForTagging\tIsReused\tIsSourceTerm\tTermLabels");
 
-                        foreach (var line in sb.ToString().Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
+                        foreach (var line in sb.ToString().Split(new string[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries))
                         {
                             tcout(line);
                         }

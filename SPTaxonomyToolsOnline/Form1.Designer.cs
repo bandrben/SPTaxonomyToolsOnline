@@ -57,6 +57,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbTermStore = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tbExportFilePath = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -70,7 +71,6 @@
             this.cbExportTermLabels = new System.Windows.Forms.CheckBox();
             this.cbExportTermIds = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label17 = new System.Windows.Forms.Label();
             this.cbAppendNewLabelsToExistingTerms = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rbImportTypeSimple = new System.Windows.Forms.RadioButton();
@@ -88,15 +88,16 @@
             this.rbImportSourceSQL = new System.Windows.Forms.RadioButton();
             this.rbImportSourceText = new System.Windows.Forms.RadioButton();
             this.rbImportSourceExcel = new System.Windows.Forms.RadioButton();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnStartClearTermSet = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
             this.cbSkipUpdatingTermLabels = new System.Windows.Forms.CheckBox();
             this.btnStartUpdate = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.tbUpdateTermsSourceFilePath = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnStartClearTermSet = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +112,8 @@
             this.lnkExport = new System.Windows.Forms.LinkLabel();
             this.imageBandR = new System.Windows.Forms.PictureBox();
             this.imageBandRwait = new System.Windows.Forms.PictureBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tbCurTermset = new System.Windows.Forms.TextBox();
             this.tb1.SuspendLayout();
             this.tpLoginInfo.SuspendLayout();
             this.tpTermStoreInfo.SuspendLayout();
@@ -121,8 +123,8 @@
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBandR)).BeginInit();
@@ -139,13 +141,14 @@
             this.tb1.Controls.Add(this.tpTermStoreInfo);
             this.tb1.Controls.Add(this.tabPage1);
             this.tb1.Controls.Add(this.tabPage2);
-            this.tb1.Controls.Add(this.tabPage3);
             this.tb1.Controls.Add(this.tabPage4);
+            this.tb1.Controls.Add(this.tabPage3);
             this.tb1.Location = new System.Drawing.Point(12, 56);
             this.tb1.Name = "tb1";
             this.tb1.SelectedIndex = 0;
             this.tb1.Size = new System.Drawing.Size(909, 471);
             this.tb1.TabIndex = 500;
+            this.tb1.SelectedIndexChanged += new System.EventHandler(this.tb1_SelectedIndexChanged);
             // 
             // tpLoginInfo
             // 
@@ -415,8 +418,20 @@
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Size = new System.Drawing.Size(901, 442);
             this.tabPage1.TabIndex = 9;
-            this.tabPage1.Text = "Export Termset";
+            this.tabPage1.Text = "Export Terms";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label18.Font = new System.Drawing.Font("Arial", 9F);
+            this.label18.Location = new System.Drawing.Point(316, 8);
+            this.label18.Name = "label18";
+            this.label18.Padding = new System.Windows.Forms.Padding(4);
+            this.label18.Size = new System.Drawing.Size(541, 160);
+            this.label18.TabIndex = 41;
+            this.label18.Text = resources.GetString("label18.Text");
             // 
             // label9
             // 
@@ -574,26 +589,14 @@
             this.tabPage2.Text = "Import Terms";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(270, 8);
-            this.label17.Name = "label17";
-            this.label17.Padding = new System.Windows.Forms.Padding(4);
-            this.label17.Size = new System.Drawing.Size(573, 160);
-            this.label17.TabIndex = 44;
-            this.label17.Text = resources.GetString("label17.Text");
-            // 
             // cbAppendNewLabelsToExistingTerms
             // 
             this.cbAppendNewLabelsToExistingTerms.AutoSize = true;
             this.cbAppendNewLabelsToExistingTerms.Location = new System.Drawing.Point(10, 180);
             this.cbAppendNewLabelsToExistingTerms.Name = "cbAppendNewLabelsToExistingTerms";
-            this.cbAppendNewLabelsToExistingTerms.Size = new System.Drawing.Size(293, 17);
+            this.cbAppendNewLabelsToExistingTerms.Size = new System.Drawing.Size(297, 17);
             this.cbAppendNewLabelsToExistingTerms.TabIndex = 40;
-            this.cbAppendNewLabelsToExistingTerms.Text = "Add Labels to Existing Terms (label delete not supported)";
+            this.cbAppendNewLabelsToExistingTerms.Text = "Add Labels to Existing Terms (Label delete not supported)";
             this.cbAppendNewLabelsToExistingTerms.UseVisualStyleBackColor = true;
             // 
             // groupBox4
@@ -761,40 +764,17 @@
             this.rbImportSourceExcel.UseVisualStyleBackColor = true;
             this.rbImportSourceExcel.CheckedChanged += new System.EventHandler(this.rbImportSourceExcel_CheckedChanged);
             // 
-            // tabPage3
+            // label17
             // 
-            this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage3.Controls.Add(this.label11);
-            this.tabPage3.Controls.Add(this.btnStartClearTermSet);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(901, 442);
-            this.tabPage3.TabIndex = 11;
-            this.tabPage3.Text = "Clear Termset";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label11.Font = new System.Drawing.Font("Arial", 9F);
-            this.label11.Location = new System.Drawing.Point(10, 8);
-            this.label11.Name = "label11";
-            this.label11.Padding = new System.Windows.Forms.Padding(4);
-            this.label11.Size = new System.Drawing.Size(383, 25);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Use this to delete all terms in a termset (does not deprecate them).";
-            // 
-            // btnStartClearTermSet
-            // 
-            this.btnStartClearTermSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartClearTermSet.Location = new System.Drawing.Point(821, 414);
-            this.btnStartClearTermSet.Name = "btnStartClearTermSet";
-            this.btnStartClearTermSet.Size = new System.Drawing.Size(75, 23);
-            this.btnStartClearTermSet.TabIndex = 39;
-            this.btnStartClearTermSet.Text = "Clear";
-            this.btnStartClearTermSet.UseVisualStyleBackColor = true;
-            this.btnStartClearTermSet.Click += new System.EventHandler(this.btnStartClearTermSet_Click);
+            this.label17.AutoSize = true;
+            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label17.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(270, 8);
+            this.label17.Name = "label17";
+            this.label17.Padding = new System.Windows.Forms.Padding(4);
+            this.label17.Size = new System.Drawing.Size(573, 160);
+            this.label17.TabIndex = 44;
+            this.label17.Text = resources.GetString("label17.Text");
             // 
             // tabPage4
             // 
@@ -863,6 +843,42 @@
             this.tbUpdateTermsSourceFilePath.MouseLeave += new System.EventHandler(this.tbUpdateTermsSourceFilePath_MouseLeave);
             this.tbUpdateTermsSourceFilePath.MouseHover += new System.EventHandler(this.tbUpdateTermsSourceFilePath_MouseHover);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.btnStartClearTermSet);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(901, 442);
+            this.tabPage3.TabIndex = 11;
+            this.tabPage3.Text = "Clear Termset";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label11.Font = new System.Drawing.Font("Arial", 9F);
+            this.label11.Location = new System.Drawing.Point(10, 8);
+            this.label11.Name = "label11";
+            this.label11.Padding = new System.Windows.Forms.Padding(4);
+            this.label11.Size = new System.Drawing.Size(475, 40);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "Use this to delete ALL terms in a termset (does not deprecate them).\r\nYou can als" +
+    "o use the \"Update Terms\" tab to delete specific terms from an import file.";
+            // 
+            // btnStartClearTermSet
+            // 
+            this.btnStartClearTermSet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStartClearTermSet.Location = new System.Drawing.Point(821, 414);
+            this.btnStartClearTermSet.Name = "btnStartClearTermSet";
+            this.btnStartClearTermSet.Size = new System.Drawing.Size(75, 23);
+            this.btnStartClearTermSet.TabIndex = 39;
+            this.btnStartClearTermSet.Text = "Clear";
+            this.btnStartClearTermSet.UseVisualStyleBackColor = true;
+            this.btnStartClearTermSet.Click += new System.EventHandler(this.btnStartClearTermSet_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -921,9 +937,9 @@
             // 
             this.tbSiteUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSiteUrl.Location = new System.Drawing.Point(75, 30);
+            this.tbSiteUrl.Location = new System.Drawing.Point(69, 30);
             this.tbSiteUrl.Name = "tbSiteUrl";
-            this.tbSiteUrl.Size = new System.Drawing.Size(846, 20);
+            this.tbSiteUrl.Size = new System.Drawing.Size(559, 20);
             this.tbSiteUrl.TabIndex = 0;
             // 
             // label1
@@ -931,9 +947,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Site URL";
+            this.label1.Text = "Site URL:";
             // 
             // statusStrip1
             // 
@@ -1006,23 +1022,32 @@
             this.imageBandRwait.TabStop = false;
             this.imageBandRwait.Click += new System.EventHandler(this.imageBandRwait_Click);
             // 
-            // label18
+            // label19
             // 
-            this.label18.AutoSize = true;
-            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label18.Font = new System.Drawing.Font("Arial", 9F);
-            this.label18.Location = new System.Drawing.Point(316, 8);
-            this.label18.Name = "label18";
-            this.label18.Padding = new System.Windows.Forms.Padding(4);
-            this.label18.Size = new System.Drawing.Size(541, 160);
-            this.label18.TabIndex = 41;
-            this.label18.Text = resources.GetString("label18.Text");
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(634, 33);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(93, 13);
+            this.label19.TabIndex = 501;
+            this.label19.Text = "Selected Termset:";
+            // 
+            // tbCurTermset
+            // 
+            this.tbCurTermset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbCurTermset.BackColor = System.Drawing.SystemColors.Control;
+            this.tbCurTermset.Location = new System.Drawing.Point(730, 30);
+            this.tbCurTermset.Name = "tbCurTermset";
+            this.tbCurTermset.Size = new System.Drawing.Size(187, 20);
+            this.tbCurTermset.TabIndex = 51;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(972, 753);
+            this.Controls.Add(this.tbCurTermset);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.lnkExport);
             this.Controls.Add(this.lnkClear);
             this.Controls.Add(this.statusStrip1);
@@ -1054,10 +1079,10 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -1154,6 +1179,8 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox cbShowEmptyTermSetsWithColor;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox tbCurTermset;
     }
 }
 

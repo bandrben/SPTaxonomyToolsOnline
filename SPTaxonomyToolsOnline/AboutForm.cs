@@ -21,6 +21,8 @@ Created by Ben Steinhauser of B&R Business Solutions.
 
 Visit us at http://www.bandrsolutions.com!
 
+Contact bsteinhauser@bandrsolutions.com
+
 ";
 
             tbAbout.AppendText(" ");

@@ -41,6 +41,8 @@ namespace SPTaxonomyToolsOnline
 
             LoadSettingsFromRegistry();
 
+            SetCurTermSetTextBox();
+
             imageBandR.Visible = true;
             imageBandRwait.Visible = false;
 
@@ -968,117 +970,67 @@ namespace SPTaxonomyToolsOnline
                         }
                         else
                         {
+                            // not adding reused term
+
                             // check if curterm exists in termset, comparing paths
                             var termMatch = lstMmdTerms.FirstOrDefault(x => GenUtil.MmdDenormalize(x.PathOfTerm).ToLower() == GenUtil.MmdDenormalize(curLevelTermObj.path).ToLower());
 
-                            if (termMatch != null)
+                            // also check if term being added has matching GUID with another term in current termset, will throw error trying to create a term with GUID that already exists if not reusing term
+                            if (lstMmdTerms.Any(x => x.Id == curLevelTermObj.id))
                             {
-                                // term found, optionally add new labels
-                                if (cbAppendNewLabelsToExistingTerms.Checked)
-                                {
-                                    if (curLevelTermObj.labels.Any())
-                                    {
-                                        foreach (var label in curLevelTermObj.labels)
-                                        {
-                                            var curLabel = label;
-
-                                            var found = false;
-                                            foreach (var matchLabel in termMatch.Labels)
-                                            {
-                                                if (matchLabel.Value.IsEqual(curLabel))
-                                                {
-                                                    found = true;
-                                                    break;
-                                                }
-                                            }
-
-                                            if (!found)
-                                            {
-                                                // create label
-                                                try
-                                                {
-                                                    termMatch.CreateLabel(curLabel, lcid, false);
-                                                    ctx.ExecuteQuery();
-                                                    tcout(" -- ", "label created", curLabel);
-                                                }
-                                                catch (Exception ex)
-                                                {
-                                                    tcout(" -- ", "ERROR creating label", curLabel, GetExcMsg(ex));
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
+                                tcout(" -- ", "term with matching guid found, skipping term");
                             }
                             else
                             {
-                                // term not found, create term
-                                if (curLevelTermObj.level == 0)
+                                if (termMatch != null)
                                 {
-                                    // level 0 parent term is termset
-                                    try
+                                    // term found, optionally add new labels
+                                    if (cbAppendNewLabelsToExistingTerms.Checked)
                                     {
-                                        var newTerm = set.CreateTerm(curLevelTermObj.termName, lcid, curLevelTermObj.id);
-                                        ctx.ExecuteQuery();
-                                        tcout(" -- ", "term created");
-
                                         if (curLevelTermObj.labels.Any())
                                         {
-                                            // add labels to new term
                                             foreach (var label in curLevelTermObj.labels)
                                             {
-                                                newTerm.CreateLabel(label, lcid, false);
-                                            }
+                                                var curLabel = label;
 
-                                            try
-                                            {
-                                                ctx.ExecuteQuery();
-                                                tcout(" -- ", "label(s) created");
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                tcout(" -- ", "ERROR creating label(s)", GetExcMsg(ex));
+                                                var found = false;
+                                                foreach (var matchLabel in termMatch.Labels)
+                                                {
+                                                    if (matchLabel.Value.IsEqual(curLabel))
+                                                    {
+                                                        found = true;
+                                                        break;
+                                                    }
+                                                }
+
+                                                if (!found)
+                                                {
+                                                    // create label
+                                                    try
+                                                    {
+                                                        termMatch.CreateLabel(curLabel, lcid, false);
+                                                        ctx.ExecuteQuery();
+                                                        tcout(" -- ", "label created", curLabel);
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        tcout(" -- ", "ERROR creating label", curLabel, GetExcMsg(ex));
+                                                    }
+                                                }
                                             }
                                         }
-
-                                        // load new term and add to collection
-                                        try
-                                        {
-                                            ctx.Load(newTerm, a => a.Name, a => a.PathOfTerm);
-                                            ctx.ExecuteQuery();
-                                            lstMmdTerms.Add(newTerm);
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            tcout(" -- ", "ERROR loading new term", GetExcMsg(ex));
-                                        }
-
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        tcout(" -- ", "ERROR creating term", GetExcMsg(ex));
                                     }
 
                                 }
                                 else
                                 {
-                                    // any other level, backtrack to get parent from path, create term in parent
-                                    var parentTermPath = curLevelTermObj.path.Substring(0, curLevelTermObj.path.LastIndexOf(';'));
-
-                                    var parentTerm = lstMmdTerms.FirstOrDefault(x => GenUtil.MmdDenormalize(x.PathOfTerm).ToLower() == GenUtil.MmdDenormalize(parentTermPath).ToLower());
-
-                                    if (parentTerm == null)
+                                    // term not found, create term
+                                    if (curLevelTermObj.level == 0)
                                     {
-                                        // this shouldn't happen, new terms are added to the collection for subsequent searches
-                                        tcout(" -- ", "parent term not found, cannot create new term");
-                                    }
-                                    else
-                                    {
-                                        // parent term found, create term here
+                                        // level 0 parent term is termset
                                         try
                                         {
-                                            var newTerm = parentTerm.CreateTerm(curLevelTermObj.termName, lcid, curLevelTermObj.id);
+                                            var newTerm = set.CreateTerm(curLevelTermObj.termName, lcid, curLevelTermObj.id);
                                             ctx.ExecuteQuery();
                                             tcout(" -- ", "term created");
 
@@ -1117,6 +1069,66 @@ namespace SPTaxonomyToolsOnline
                                         catch (Exception ex)
                                         {
                                             tcout(" -- ", "ERROR creating term", GetExcMsg(ex));
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        // any other level, backtrack to get parent from path, create term in parent
+                                        var parentTermPath = curLevelTermObj.path.Substring(0, curLevelTermObj.path.LastIndexOf(';'));
+
+                                        var parentTerm = lstMmdTerms.FirstOrDefault(x => GenUtil.MmdDenormalize(x.PathOfTerm).ToLower() == GenUtil.MmdDenormalize(parentTermPath).ToLower());
+
+                                        if (parentTerm == null)
+                                        {
+                                            // this shouldn't happen, new terms are added to the collection for subsequent searches
+                                            tcout(" -- ", "parent term not found, cannot create new term");
+                                        }
+                                        else
+                                        {
+                                            // parent term found, create term here
+                                            try
+                                            {
+                                                var newTerm = parentTerm.CreateTerm(curLevelTermObj.termName, lcid, curLevelTermObj.id);
+                                                ctx.ExecuteQuery();
+                                                tcout(" -- ", "term created");
+
+                                                if (curLevelTermObj.labels.Any())
+                                                {
+                                                    // add labels to new term
+                                                    foreach (var label in curLevelTermObj.labels)
+                                                    {
+                                                        newTerm.CreateLabel(label, lcid, false);
+                                                    }
+
+                                                    try
+                                                    {
+                                                        ctx.ExecuteQuery();
+                                                        tcout(" -- ", "label(s) created");
+                                                    }
+                                                    catch (Exception ex)
+                                                    {
+                                                        tcout(" -- ", "ERROR creating label(s)", GetExcMsg(ex));
+                                                    }
+                                                }
+
+                                                // load new term and add to collection
+                                                try
+                                                {
+                                                    ctx.Load(newTerm, a => a.Name, a => a.PathOfTerm);
+                                                    ctx.ExecuteQuery();
+                                                    lstMmdTerms.Add(newTerm);
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    tcout(" -- ", "ERROR loading new term", GetExcMsg(ex));
+                                                }
+
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                tcout(" -- ", "ERROR creating term", GetExcMsg(ex));
+                                            }
                                         }
                                     }
                                 }
@@ -1874,6 +1886,8 @@ namespace SPTaxonomyToolsOnline
                 tbTermSet.Text = "";
                 tbTermSetID.Text = "";
             }
+
+            SetCurTermSetTextBox();
         }
 
 
@@ -2203,8 +2217,26 @@ namespace SPTaxonomyToolsOnline
 
 
 
+        private void SetCurTermSetTextBox()
+        {
+            if (!tbTermSet.Text.IsNull())
+            {
+                tbCurTermset.Text = tbTermSet.Text.Trim();
+            }
+            else if (!tbTermSetID.Text.IsNull())
+            {
+                tbCurTermset.Text = tbTermSetID.Text.Trim();
+            }
+            else
+            {
+                tbCurTermset.Text = "N/A";
+            }
+        }
 
-
+        private void tb1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetCurTermSetTextBox();
+        }
 
     }
 }

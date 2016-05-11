@@ -269,9 +269,9 @@
             this.cbShowEmptyTermSetsWithColor.AutoSize = true;
             this.cbShowEmptyTermSetsWithColor.Location = new System.Drawing.Point(134, 47);
             this.cbShowEmptyTermSetsWithColor.Name = "cbShowEmptyTermSetsWithColor";
-            this.cbShowEmptyTermSetsWithColor.Size = new System.Drawing.Size(177, 17);
+            this.cbShowEmptyTermSetsWithColor.Size = new System.Drawing.Size(210, 17);
             this.cbShowEmptyTermSetsWithColor.TabIndex = 50;
-            this.cbShowEmptyTermSetsWithColor.Text = "Show empty term sets with color";
+            this.cbShowEmptyTermSetsWithColor.Text = "Show termset term count (takes longer)";
             this.cbShowEmptyTermSetsWithColor.UseVisualStyleBackColor = true;
             // 
             // label16
@@ -1035,11 +1035,14 @@
             // tbCurTermset
             // 
             this.tbCurTermset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCurTermset.BackColor = System.Drawing.SystemColors.Control;
+            this.tbCurTermset.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.tbCurTermset.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCurTermset.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.tbCurTermset.Location = new System.Drawing.Point(730, 30);
             this.tbCurTermset.Name = "tbCurTermset";
             this.tbCurTermset.Size = new System.Drawing.Size(187, 20);
             this.tbCurTermset.TabIndex = 51;
+            this.tbCurTermset.Text = "DEMO";
             // 
             // Form1
             // 

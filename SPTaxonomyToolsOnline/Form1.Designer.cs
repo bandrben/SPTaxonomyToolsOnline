@@ -152,6 +152,7 @@
             // 
             // tpLoginInfo
             // 
+            this.tpLoginInfo.AutoScroll = true;
             this.tpLoginInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpLoginInfo.Controls.Add(this.btnStartTestConnection);
             this.tpLoginInfo.Controls.Add(this.cbIsSPOnline);
@@ -240,6 +241,7 @@
             // 
             // tpTermStoreInfo
             // 
+            this.tpTermStoreInfo.AutoScroll = true;
             this.tpTermStoreInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tpTermStoreInfo.Controls.Add(this.cbShowEmptyTermSetsWithColor);
             this.tpTermStoreInfo.Controls.Add(this.label16);
@@ -405,6 +407,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AutoScroll = true;
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.label9);
@@ -568,6 +571,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AutoScroll = true;
             this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage2.Controls.Add(this.cbAppendNewLabelsToExistingTerms);
             this.tabPage2.Controls.Add(this.groupBox4);
@@ -778,6 +782,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.AutoScroll = true;
             this.tabPage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.cbSkipUpdatingTermLabels);
@@ -845,6 +850,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AutoScroll = true;
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabPage3.Controls.Add(this.label11);
             this.tabPage3.Controls.Add(this.btnStartClearTermSet);
@@ -963,7 +969,9 @@
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.toolStripStatusLabel1.ActiveLinkColor = System.Drawing.Color.Tomato;
+            this.toolStripStatusLabel1.BackColor = System.Drawing.Color.Tomato;
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.White;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(109, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
@@ -1035,7 +1043,7 @@
             // tbCurTermset
             // 
             this.tbCurTermset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbCurTermset.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.tbCurTermset.BackColor = System.Drawing.Color.Tomato;
             this.tbCurTermset.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCurTermset.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.tbCurTermset.Location = new System.Drawing.Point(730, 30);

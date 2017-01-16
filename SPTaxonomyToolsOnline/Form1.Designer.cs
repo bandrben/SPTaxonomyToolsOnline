@@ -114,6 +114,19 @@
             this.imageBandRwait = new System.Windows.Forms.PictureBox();
             this.label19 = new System.Windows.Forms.Label();
             this.tbCurTermset = new System.Windows.Forms.TextBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tbNewTermSetName = new System.Windows.Forms.TextBox();
+            this.cbNewTermsetIsAvail = new System.Windows.Forms.CheckBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tbNewTermsetDescr = new System.Windows.Forms.TextBox();
+            this.btnNewTermset = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteTermset = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cbNewTermsetIsOpen = new System.Windows.Forms.CheckBox();
+            this.tbImportTermsPasteBox = new System.Windows.Forms.TextBox();
             this.tb1.SuspendLayout();
             this.tpLoginInfo.SuspendLayout();
             this.tpTermStoreInfo.SuspendLayout();
@@ -129,6 +142,9 @@
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBandR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBandRwait)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb1
@@ -139,6 +155,7 @@
             this.tb1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tb1.Controls.Add(this.tpLoginInfo);
             this.tb1.Controls.Add(this.tpTermStoreInfo);
+            this.tb1.Controls.Add(this.tabPage5);
             this.tb1.Controls.Add(this.tabPage1);
             this.tb1.Controls.Add(this.tabPage2);
             this.tb1.Controls.Add(this.tabPage4);
@@ -573,6 +590,7 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage2.Controls.Add(this.tbImportTermsPasteBox);
             this.tabPage2.Controls.Add(this.cbAppendNewLabelsToExistingTerms);
             this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.btnStartImport);
@@ -1052,6 +1070,145 @@
             this.tbCurTermset.TabIndex = 51;
             this.tbCurTermset.Text = "DEMO";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.AutoScroll = true;
+            this.tabPage5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage5.Controls.Add(this.label22);
+            this.tabPage5.Controls.Add(this.groupBox6);
+            this.tabPage5.Controls.Add(this.groupBox5);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(901, 442);
+            this.tabPage5.TabIndex = 13;
+            this.tabPage5.Text = "Termset Mgmt";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 22);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(38, 13);
+            this.label20.TabIndex = 33;
+            this.label20.Text = "Name:";
+            // 
+            // tbNewTermSetName
+            // 
+            this.tbNewTermSetName.Location = new System.Drawing.Point(75, 19);
+            this.tbNewTermSetName.Name = "tbNewTermSetName";
+            this.tbNewTermSetName.Size = new System.Drawing.Size(383, 20);
+            this.tbNewTermSetName.TabIndex = 1150;
+            // 
+            // cbNewTermsetIsAvail
+            // 
+            this.cbNewTermsetIsAvail.AutoSize = true;
+            this.cbNewTermsetIsAvail.Location = new System.Drawing.Point(75, 71);
+            this.cbNewTermsetIsAvail.Name = "cbNewTermsetIsAvail";
+            this.cbNewTermsetIsAvail.Size = new System.Drawing.Size(137, 17);
+            this.cbNewTermsetIsAvail.TabIndex = 1152;
+            this.cbNewTermsetIsAvail.Text = "Is Available for Tagging";
+            this.cbNewTermsetIsAvail.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 48);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(63, 13);
+            this.label21.TabIndex = 36;
+            this.label21.Text = "Description:";
+            // 
+            // tbNewTermsetDescr
+            // 
+            this.tbNewTermsetDescr.Location = new System.Drawing.Point(75, 45);
+            this.tbNewTermsetDescr.Name = "tbNewTermsetDescr";
+            this.tbNewTermsetDescr.Size = new System.Drawing.Size(383, 20);
+            this.tbNewTermsetDescr.TabIndex = 1151;
+            // 
+            // btnNewTermset
+            // 
+            this.btnNewTermset.Location = new System.Drawing.Point(75, 117);
+            this.btnNewTermset.Name = "btnNewTermset";
+            this.btnNewTermset.Size = new System.Drawing.Size(75, 23);
+            this.btnNewTermset.TabIndex = 1153;
+            this.btnNewTermset.Text = "Create";
+            this.btnNewTermset.UseVisualStyleBackColor = true;
+            this.btnNewTermset.Click += new System.EventHandler(this.btnNewTermset_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.cbNewTermsetIsOpen);
+            this.groupBox5.Controls.Add(this.btnNewTermset);
+            this.groupBox5.Controls.Add(this.label20);
+            this.groupBox5.Controls.Add(this.cbNewTermsetIsAvail);
+            this.groupBox5.Controls.Add(this.label21);
+            this.groupBox5.Controls.Add(this.tbNewTermSetName);
+            this.groupBox5.Controls.Add(this.tbNewTermsetDescr);
+            this.groupBox5.Location = new System.Drawing.Point(10, 13);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(471, 149);
+            this.groupBox5.TabIndex = 38;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Create Termset";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.btnDeleteTermset);
+            this.groupBox6.Location = new System.Drawing.Point(10, 167);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(471, 57);
+            this.groupBox6.TabIndex = 39;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Delete Termset";
+            // 
+            // btnDeleteTermset
+            // 
+            this.btnDeleteTermset.Location = new System.Drawing.Point(9, 19);
+            this.btnDeleteTermset.Name = "btnDeleteTermset";
+            this.btnDeleteTermset.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteTermset.TabIndex = 38;
+            this.btnDeleteTermset.Text = "Delete";
+            this.btnDeleteTermset.UseVisualStyleBackColor = true;
+            this.btnDeleteTermset.Click += new System.EventHandler(this.btnDeleteTermset_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label22.Font = new System.Drawing.Font("Arial", 9F);
+            this.label22.Location = new System.Drawing.Point(10, 232);
+            this.label22.Name = "label22";
+            this.label22.Padding = new System.Windows.Forms.Padding(4);
+            this.label22.Size = new System.Drawing.Size(618, 55);
+            this.label22.TabIndex = 42;
+            this.label22.Text = "To create a new Term Set, first select a Term Group (or enter name/id), then ente" +
+    "r the required Term Set Name.\r\n\r\nTo delete a Term Set, first select a Term Set (" +
+    "or enter name/id), then click button.";
+            // 
+            // cbNewTermsetIsOpen
+            // 
+            this.cbNewTermsetIsOpen.AutoSize = true;
+            this.cbNewTermsetIsOpen.Location = new System.Drawing.Point(75, 94);
+            this.cbNewTermsetIsOpen.Name = "cbNewTermsetIsOpen";
+            this.cbNewTermsetIsOpen.Size = new System.Drawing.Size(147, 17);
+            this.cbNewTermsetIsOpen.TabIndex = 1154;
+            this.cbNewTermsetIsOpen.Text = "Is Open for Term Creation";
+            this.cbNewTermsetIsOpen.UseVisualStyleBackColor = true;
+            // 
+            // tbImportTermsPasteBox
+            // 
+            this.tbImportTermsPasteBox.AcceptsTab = true;
+            this.tbImportTermsPasteBox.Location = new System.Drawing.Point(10, 122);
+            this.tbImportTermsPasteBox.Multiline = true;
+            this.tbImportTermsPasteBox.Name = "tbImportTermsPasteBox";
+            this.tbImportTermsPasteBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbImportTermsPasteBox.Size = new System.Drawing.Size(254, 46);
+            this.tbImportTermsPasteBox.TabIndex = 45;
+            this.tbImportTermsPasteBox.WordWrap = false;
+            this.tbImportTermsPasteBox.MouseLeave += new System.EventHandler(this.tbImportTermsPasteBox_MouseLeave);
+            this.tbImportTermsPasteBox.MouseHover += new System.EventHandler(this.tbImportTermsPasteBox_MouseHover);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1100,6 +1257,11 @@
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBandR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBandRwait)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1192,6 +1354,19 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox tbCurTermset;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button btnDeleteTermset;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnNewTermset;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.CheckBox cbNewTermsetIsAvail;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox tbNewTermSetName;
+        private System.Windows.Forms.TextBox tbNewTermsetDescr;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox cbNewTermsetIsOpen;
+        private System.Windows.Forms.TextBox tbImportTermsPasteBox;
     }
 }
 

@@ -51,6 +51,8 @@ namespace SPTaxonomyToolsOnline
 
             rbImportTypeSimple.Checked = true;
             rbImportSourceText.Checked = true;
+
+            cbNewTermsetIsAvail.Checked = true;
         }
 
 
@@ -201,6 +203,8 @@ namespace SPTaxonomyToolsOnline
             btnStartImport.Enabled = false;
             btnStartTestConnection.Enabled = false;
             btnLoadMMD.Enabled = false;
+            btnNewTermset.Enabled = false;
+            btnDeleteTermset.Enabled = false;
 
             lnkClear.Enabled = false;
             lnkExport.Enabled = false;
@@ -218,6 +222,8 @@ namespace SPTaxonomyToolsOnline
             btnStartImport.Enabled = true;
             btnStartTestConnection.Enabled = true;
             btnLoadMMD.Enabled = true;
+            btnNewTermset.Enabled = true;
+            btnDeleteTermset.Enabled = true;
 
             lnkClear.Enabled = true;
             lnkExport.Enabled = true;
@@ -278,6 +284,47 @@ namespace SPTaxonomyToolsOnline
 
 
 
+
+        private void LoadTStoreTGroup(ClientContext ctx, TaxonomySession session, ref TermStore store, ref TermGroup group)
+        {
+            // load termstore
+            if (!GenUtil.IsNull(tbTermStore.Text.Trim()))
+            {
+                store = session.TermStores.GetByName(tbTermStore.Text.Trim());
+            }
+            else if (!GenUtil.IsNull(tbTermStoreID.Text.Trim()))
+            {
+                store = session.TermStores.GetById(GenUtil.SafeToGuid(tbTermStoreID.Text.Trim()).Value);
+            }
+            else
+            {
+                throw new Exception("Term Store name or ID missing.");
+            }
+
+            ctx.Load(store);
+            ctx.ExecuteQuery();
+
+            tcout("Termstore loaded", store.Name);
+
+            // load termgroup
+            if (!GenUtil.IsNull(tbTermGroup.Text.Trim()))
+            {
+                group = store.Groups.GetByName(tbTermGroup.Text.Trim());
+            }
+            else if (!GenUtil.IsNull(tbTermGroupID.Text.Trim()))
+            {
+                group = store.Groups.GetById(GenUtil.SafeToGuid(tbTermGroupID.Text.Trim()).Value);
+            }
+            else
+            {
+                throw new Exception("Term Group name or ID missing.");
+            }
+
+            ctx.Load(group);
+            ctx.ExecuteQuery();
+
+            tcout("Termgroup loaded", group.Name);
+        }
 
 
         private void LoadTStoreTGroupTSet(ClientContext ctx, TaxonomySession session, ref TermStore store, ref TermGroup group, ref TermSet set)
@@ -830,7 +877,7 @@ namespace SPTaxonomyToolsOnline
 
             if (rbImportSourceText.Checked)
             {
-                if (!ImportFileHelper.GetDataFromTextFileAdv(tmpSep, tbImportSourceFilePath.Text.Trim(), out lstImportTermObjs, out msg))
+                if (!ImportFileHelper.GetDataFromTextFileAdv(tmpSep, tbImportTermsPasteBox.Text.Trim(), tbImportSourceFilePath.Text.Trim(), out lstImportTermObjs, out msg))
                 {
                     tcout("ERROR extracting data from text file", msg);
                     return;
@@ -1171,7 +1218,7 @@ namespace SPTaxonomyToolsOnline
 
             if (rbImportSourceText.Checked)
             {
-                if (!ImportFileHelper.GetDataFromTextFileSimple(tmpSep, tbImportSourceFilePath.Text.Trim(), out lstTermObjs, out msg))
+                if (!ImportFileHelper.GetDataFromTextFileSimple(tmpSep, tbImportTermsPasteBox.Text.Trim(), tbImportSourceFilePath.Text.Trim(), out lstTermObjs, out msg))
                 {
                     tcout("ERROR extracting data from text file", msg);
                     return;
@@ -2107,6 +2154,8 @@ namespace SPTaxonomyToolsOnline
                 tbImportSeparator.Enabled = true;
                 tbImportDbConnString.Enabled = false;
                 tbImportSelectStmt.Enabled = false;
+
+                tbImportTermsPasteBox.Visible = true;
             }
             else if (rbImportSourceExcel.Checked)
             {
@@ -2114,6 +2163,8 @@ namespace SPTaxonomyToolsOnline
                 tbImportSeparator.Enabled = false;
                 tbImportDbConnString.Enabled = false;
                 tbImportSelectStmt.Enabled = false;
+
+                tbImportTermsPasteBox.Visible = false;
             }
             else
             {
@@ -2121,6 +2172,8 @@ namespace SPTaxonomyToolsOnline
                 tbImportSeparator.Enabled = false;
                 tbImportDbConnString.Enabled = rbImportTypeSimple.Checked ? true : false;
                 tbImportSelectStmt.Enabled = rbImportTypeSimple.Checked ? true : false;
+
+                tbImportTermsPasteBox.Visible = false;
             }
         }
 
@@ -2219,6 +2272,18 @@ namespace SPTaxonomyToolsOnline
             toolStripStatusLabel1.Text = "";
         }
 
+        private void tbImportTermsPasteBox_MouseHover(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Enter the terms here instead of entering Source File Path for Text imports (Simple or Advanced).";
+        }
+
+        private void tbImportTermsPasteBox_MouseLeave(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "";
+        }
+
+
+
         private void imageBandR_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://www.bandrsolutions.com/?utm_source=SPTaxonomyToolsOnline&utm_medium=application&utm_campaign=SPTaxonomyToolsOnline");
@@ -2251,6 +2316,203 @@ namespace SPTaxonomyToolsOnline
         {
             SetCurTermSetTextBox();
         }
+
+
+
+
+
+        private void btnNewTermset_Click(object sender, EventArgs e)
+        {
+            if (tbNewTermSetName.Text.IsNull())
+            {
+                return;
+            }
+
+            DisableFormControls();
+            InitCoutBuffer();
+            tbStatus.Text = "";
+
+            bgw = new BackgroundWorker();
+            bgw.DoWork += new DoWorkEventHandler(bgw_btnNewTermset);
+            bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgw_btnNewTermset_End);
+            bgw.ProgressChanged += new ProgressChangedEventHandler(BgwReportProgress);
+            bgw.WorkerReportsProgress = true;
+            bgw.RunWorkerAsync();
+        }
+
+        private void bgw_btnNewTermset(object sender, DoWorkEventArgs e)
+        {
+            var retStatus = "";
+
+            tcout("SiteUrl", tbSiteUrl.Text);
+            tcout("UserName", tbUsername.Text);
+            tcout("Domain", tbDomain.Text);
+            tcout("IsSPOnline", cbIsSPOnline.Checked);
+            tcout("TermStore", tbTermStore.Text);
+            tcout("TermStoreID", tbTermStoreID.Text);
+            tcout("TermGroup", tbTermGroup.Text);
+            tcout("TermGroupID", tbTermGroupID.Text);
+            tcout("TermSet Name", tbNewTermSetName.Text);
+            tcout("TermSet Descr", tbNewTermsetDescr.Text);
+            tcout("TermSet IsAvailForTagging", cbNewTermsetIsAvail.Checked);
+            tcout("TermSet IsOpenForCreation", cbNewTermsetIsOpen.Checked);
+            tcout("---------------------------------------------");
+
+            var targetSite = new Uri(tbSiteUrl.Text.Trim());
+
+            using (ClientContext ctx = new ClientContext(targetSite))
+            {
+                ctx.Credentials = BuildCreds();
+                FixCtxForMixedMode(ctx);
+
+                Web web = ctx.Web;
+                ctx.Load(web, w => w.Title);
+                ctx.ExecuteQuery();
+                tcout("Site loaded", web.Title);
+
+                var lcid = System.Globalization.CultureInfo.CurrentCulture.LCID;
+                var session = TaxonomySession.GetTaxonomySession(ctx);
+
+                TermStore store = null;
+                TermGroup group = null;
+
+                LoadTStoreTGroup(ctx, session, ref store, ref group);
+
+                var newTermSetId = Guid.NewGuid();
+
+                var newTermSet = group.CreateTermSet(tbNewTermSetName.Text.Trim(), newTermSetId, lcid);
+                newTermSet.Description = tbNewTermsetDescr.Text.Trim();
+                newTermSet.IsAvailableForTagging = cbNewTermsetIsAvail.Checked;
+                newTermSet.IsOpenForTermCreation = cbNewTermsetIsOpen.Checked;
+
+                ctx.ExecuteQuery();
+
+                tcout("Termset Created Successfully!");
+
+                retStatus = newTermSetId.ToString();
+            }
+
+            e.Result = retStatus;
+        }
+
+        private void bgw_btnNewTermset_End(object sender, RunWorkerCompletedEventArgs e)
+        {
+            FlushCoutBuffer();
+            SaveLogToFile("NewTermSet");
+            EnableFormControls();
+
+            var retStatus = e.Result.ToString();
+
+            if (!retStatus.IsNull())
+            {
+                tbTermSet.Text = tbNewTermSetName.Text.Trim();
+                tbTermSetID.Text = retStatus;
+                tbCurTermset.Text = tbTermSet.Text;
+
+                tbNewTermSetName.Text = "";
+                tbNewTermsetDescr.Text = "";
+                cbNewTermsetIsAvail.Checked = true;
+                cbNewTermsetIsOpen.Checked = false;
+            }
+        }
+
+
+
+
+
+
+        private void btnDeleteTermset_Click(object sender, EventArgs e)
+        {
+            DialogResult dgResult = MessageBox.Show("Are you sure?", "Delete Termset", MessageBoxButtons.YesNo);
+
+            if (dgResult != DialogResult.Yes)
+            {
+                cout("Canceled");
+                return;
+            }
+
+            DisableFormControls();
+            InitCoutBuffer();
+            tbStatus.Text = "";
+
+            bgw = new BackgroundWorker();
+            bgw.DoWork += new DoWorkEventHandler(bgw_btnDeleteTermset);
+            bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bgw_btnDeleteTermset_End);
+            bgw.ProgressChanged += new ProgressChangedEventHandler(BgwReportProgress);
+            bgw.WorkerReportsProgress = true;
+            bgw.RunWorkerAsync();
+        }
+
+        private void bgw_btnDeleteTermset(object sender, DoWorkEventArgs e)
+        {
+            var retStatus = "";
+
+            tcout("SiteUrl", tbSiteUrl.Text);
+            tcout("UserName", tbUsername.Text);
+            tcout("Domain", tbDomain.Text);
+            tcout("IsSPOnline", cbIsSPOnline.Checked);
+            tcout("TermStore", tbTermStore.Text);
+            tcout("TermStoreID", tbTermStoreID.Text);
+            tcout("TermGroup", tbTermGroup.Text);
+            tcout("TermGroupID", tbTermGroupID.Text);
+            tcout("TermSet", tbTermSet.Text);
+            tcout("TermSetID", tbTermSetID.Text);
+            tcout("---------------------------------------------");
+
+            var targetSite = new Uri(tbSiteUrl.Text.Trim());
+
+            using (ClientContext ctx = new ClientContext(targetSite))
+            {
+                ctx.Credentials = BuildCreds();
+                FixCtxForMixedMode(ctx);
+
+                Web web = ctx.Web;
+                ctx.Load(web, w => w.Title);
+                ctx.ExecuteQuery();
+                tcout("Site loaded", web.Title);
+
+                var lcid = System.Globalization.CultureInfo.CurrentCulture.LCID;
+                var session = TaxonomySession.GetTaxonomySession(ctx);
+
+                TermStore store = null;
+                TermGroup group = null;
+                TermSet set = null;
+
+                LoadTStoreTGroupTSet(ctx, session, ref store, ref group, ref set);
+
+                set.DeleteObject();
+
+                ctx.ExecuteQuery();
+
+                tcout("Termset Deleted Successfully!");
+
+                retStatus = "OK";
+            }
+
+            e.Result = retStatus;
+        }
+
+        private void bgw_btnDeleteTermset_End(object sender, RunWorkerCompletedEventArgs e)
+        {
+            FlushCoutBuffer();
+            SaveLogToFile("DeleteTermSet");
+            EnableFormControls();
+
+            var retStatus = e.Result.ToString();
+
+            if (!retStatus.IsNull())
+            {
+                tbTermSet.Text = "";
+                tbTermSetID.Text = "";
+                tbCurTermset.Text = "";
+            }
+        }
+
+
+
+
+
+
 
     }
 }

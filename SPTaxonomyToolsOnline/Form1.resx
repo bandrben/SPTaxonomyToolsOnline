@@ -117,18 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Multiple export formats supported, this tab will not change the Termset in any way.
-Try out many ways to export a Termset.
-
-Export Type Simple:
-Exports all terms in termset in flat format, with extra info, good for DB importing or Excel analysis.
-Also it is used as first part of "Update Terms" action.
-
-Export Type Advanced:
-Exports all terms in hierarchical format, preserving parent/child relationships,
-good for migrating Termsets in SP.</value>
-  </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Simple Import Format:
 Supports importing flat terms into termset, with labels, no nesting, no reuse, IDs supported.
@@ -140,6 +128,18 @@ For reuse, termid is required, then prepend termname with #reuse or #reuseall in
 [termid|][#reuse]termname[|termlabel1|termlabel2..] (1 or more per line)
 
 If you want to sync labels (not just add new labels to new or existing terms) then use the "Update" tab.</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Multiple export formats supported, this tab will not change the Termset in any way.
+Try out many ways to export a Termset.
+
+Export Type Simple:
+Exports all terms in termset in flat format, with extra info, good for DB importing or Excel analysis.
+Also it is used as first part of "Update Terms" action.
+
+Export Type Advanced:
+Exports all terms in hierarchical format, preserving parent/child relationships,
+good for migrating Termsets in SP.</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Use this to update existing terms, matched on Term Id, can update term name, description, isavailfortagging, and labels.

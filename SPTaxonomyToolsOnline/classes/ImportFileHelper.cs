@@ -156,14 +156,23 @@ namespace BandR
             return msg == "";
         }
 
-        public static bool GetDataFromTextFileAdv(string sep, string inputTextFile, out List<TermObjAdv> lstTermObjs, out string msg)
+        public static bool GetDataFromTextFileAdv(string sep, string importTermsPasteBox, string inputTextFile, out List<TermObjAdv> lstTermObjs, out string msg)
         {
             msg = "";
             lstTermObjs = new List<TermObjAdv>();
+            var fileText = "";
 
             try
             {
-                var fileText = System.IO.File.ReadAllText(inputTextFile);
+                if (!importTermsPasteBox.IsNull())
+                {
+                    fileText = importTermsPasteBox.Trim();
+                }
+                else
+                {
+                    fileText = System.IO.File.ReadAllText(inputTextFile);
+                }
+
                 fileText = GenUtil.NormalizeEol(fileText);
                 var lines = fileText.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Distinct().ToList();
 
@@ -407,19 +416,28 @@ namespace BandR
             return msg == "";
         }
 
-        public static bool GetDataFromTextFileSimple(string sep, string inputTextFile, out List<TermObj> lstTermObjs, out string msg)
+        public static bool GetDataFromTextFileSimple(string sep, string importTermsPasteBox, string inputTextFile, out List<TermObj> lstTermObjs, out string msg)
         {
             // term guid not imported
             // terms flat in file, no heirarchy
             // can only import terms flat, and term labels for the imported term
             msg = "";
             lstTermObjs = new List<TermObj>();
+            var fileText = "";
 
             try
             {
-                var fileText = System.IO.File.ReadAllText(inputTextFile);
+                if (!importTermsPasteBox.IsNull())
+                {
+                    fileText = importTermsPasteBox.Trim();
+                }
+                else
+                {
+                    fileText = System.IO.File.ReadAllText(inputTextFile);
+                }
+
                 fileText = GenUtil.NormalizeEol(fileText);
-                var lines = fileText.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Distinct();
+                var lines = fileText.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Distinct().ToList();
 
                 foreach (var line in lines)
                 {

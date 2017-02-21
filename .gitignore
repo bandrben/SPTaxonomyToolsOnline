@@ -251,8 +251,7 @@ _Pvt_Extensions
 
 # BEN
 [Ll]ib/
-# *.exe
-# *.dll
-.dat
-.manifest
-logs/
+[Ll]ogs/
+[Dd]ata/
+*.dat
+*.manifest

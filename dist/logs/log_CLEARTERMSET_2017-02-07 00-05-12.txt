@@ -1,0 +1,30 @@
+12:05:10 AM: SiteUrl: https://pecorep.sharepoint.com/sites/FilingCabinet
+12:05:10 AM: UserName: BSteinhauser@pecorep.onmicrosoft.com
+12:05:10 AM: Domain: 
+12:05:10 AM: IsSPOnline: True
+12:05:10 AM: TermStore: Taxonomy_BqOb8fDmcf9Re87EOUOAxQ==
+12:05:10 AM: TermGroup: Filing Cabinet
+12:05:10 AM: TermSet: Accounting Property Num
+12:05:10 AM: TermStoreID: be7b242d-8119-4d5e-b151-d39a0d22db80
+12:05:10 AM: TermGroupID: c8197592-636b-491e-8c2b-bb633e02e310
+12:05:10 AM: TermSetID: 524bb162-5857-4f87-b58b-e9d8c42bf905
+12:05:10 AM: ---------------------------------------------
+12:05:11 AM: Site loaded: Filing Cabinet
+12:05:11 AM: Termstore loaded: Taxonomy_BqOb8fDmcf9Re87EOUOAxQ==
+12:05:11 AM: Termgroup loaded: Filing Cabinet
+12:05:11 AM: Termset loaded: Accounting Property Num
+12:05:11 AM: Root terms loaded: 12
+12:05:11 AM: 1/12: Deleting term: 153
+12:05:11 AM: 2/12: Deleting term: 156
+12:05:11 AM: 3/12: Deleting term: 161
+12:05:11 AM: 4/12: Deleting term: 163
+12:05:11 AM: 5/12: Deleting term: 2101
+12:05:11 AM: 6/12: Deleting term: 2102
+12:05:11 AM: 7/12: Deleting term: 2104
+12:05:11 AM: 8/12: Deleting term: 2105
+12:05:11 AM: 9/12: Deleting term: 2106
+12:05:11 AM: 10/12: Deleting term: 2107
+12:05:11 AM: 11/12: Deleting term: 8003
+12:05:11 AM: 12/12: Deleting term: 8005
+
+[EOF]

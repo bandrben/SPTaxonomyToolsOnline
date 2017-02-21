@@ -1,0 +1,29 @@
+12:16:23 AM: SiteUrl: https://pecorep.sharepoint.com/sites/FilingCabinet
+12:16:23 AM: UserName: BSteinhauser@pecorep.onmicrosoft.com
+12:16:23 AM: Domain: 
+12:16:23 AM: IsSPOnline: True
+12:16:23 AM: TermStore: Taxonomy_BqOb8fDmcf9Re87EOUOAxQ==
+12:16:23 AM: TermGroup: Filing Cabinet
+12:16:23 AM: TermSet: Accounting Property Num
+12:16:23 AM: TermStoreID: be7b242d-8119-4d5e-b151-d39a0d22db80
+12:16:23 AM: TermGroupID: c8197592-636b-491e-8c2b-bb633e02e310
+12:16:23 AM: TermSetID: 524bb162-5857-4f87-b58b-e9d8c42bf905
+12:16:23 AM: ExportFormat: Screen
+12:16:23 AM: ---------------------------------------------
+12:16:24 AM: Site loaded: Filing Cabinet
+12:16:24 AM: Termstore loaded: Taxonomy_BqOb8fDmcf9Re87EOUOAxQ==
+12:16:25 AM: Termgroup loaded: Filing Cabinet
+12:16:25 AM: Termset loaded: Accounting Property Num
+12:16:25 AM: All terms loaded: 7
+12:16:25 AM: ---------------------------------------------
+12:16:25 AM: Counter	TermId	ParentTermId	TermPath	TermName	Descr	IsAvailForTagging	IsReused	IsSourceTerm	TermLabels
+12:16:25 AM: 1	170ab69e-3ef3-494c-825d-e9bbcf9b9b90		000153	000153		True	False	True	
+12:16:25 AM: 2	c8d3e1ca-08ad-4e6a-b893-e0da90a86589		000156	000156		True	False	True	
+12:16:25 AM: 3	690ad6e5-7224-41aa-b5cf-fe929507f0b4		000161	000161		True	False	True	
+12:16:25 AM: 4	d0744c90-5dd2-4104-8932-ed51c25bc44d		000163	000163		True	False	True	
+12:16:25 AM: 5	04afeb05-eefc-4c10-92cf-f3650da462d8		002101	002101		True	False	True	
+12:16:25 AM: 6	f82d5a2b-498d-4769-a536-f5d46a5d8905		002102	002102		True	False	True	
+12:16:25 AM: 7	2dbd38ac-ab1e-4315-b4b9-315e8eff92c4		008003	008003		True	False	True	
+12:16:25 AM: ---------------------------------------------
+
+[EOF]

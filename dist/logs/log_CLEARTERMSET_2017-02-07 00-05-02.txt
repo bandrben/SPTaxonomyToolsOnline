@@ -1,0 +1,30 @@
+12:05:00 AM: SiteUrl: https://pecorep.sharepoint.com/sites/FilingCabinet
+12:05:00 AM: UserName: BSteinhauser@pecorep.onmicrosoft.com
+12:05:00 AM: Domain: 
+12:05:00 AM: IsSPOnline: True
+12:05:00 AM: TermStore: Taxonomy_BqOb8fDmcf9Re87EOUOAxQ==
+12:05:00 AM: TermGroup: Filing Cabinet
+12:05:00 AM: TermSet: Accounting Property Name
+12:05:00 AM: TermStoreID: be7b242d-8119-4d5e-b151-d39a0d22db80
+12:05:00 AM: TermGroupID: c8197592-636b-491e-8c2b-bb633e02e310
+12:05:00 AM: TermSetID: 5ff7834d-cfbb-4a21-9e68-7b8beebfe620
+12:05:00 AM: ---------------------------------------------
+12:05:01 AM: Site loaded: Filing Cabinet
+12:05:01 AM: Termstore loaded: Taxonomy_BqOb8fDmcf9Re87EOUOAxQ==
+12:05:01 AM: Termgroup loaded: Filing Cabinet
+12:05:01 AM: Termset loaded: Accounting Property Name
+12:05:02 AM: Root terms loaded: 12
+12:05:02 AM: 1/12: Deleting term: ACTION BOULEVARD STATION LLC
+12:05:02 AM: 2/12: Deleting term: BRID - BRIDGEWATER FALLS
+12:05:02 AM: 3/12: Deleting term: BRTC- SENDIK'S TOWNE CENTRE
+12:05:02 AM: 4/12: Deleting term: FORT SMITH PAVILION
+12:05:02 AM: 5/12: Deleting term: KTPL - KENWOOD TOWNE PLACE
+12:05:02 AM: 6/12: Deleting term: PARC - PARKSIDE
+12:05:02 AM: 7/12: Deleting term: PARK - PARKSIDE 1
+12:05:02 AM: 8/12: Deleting term: PARMATOWN STATION LLC - MALL
+12:05:02 AM: 9/12: Deleting term: PESC FUND III
+12:05:02 AM: 10/12: Deleting term: PHILLIPS EDISON ARC SHOPPING CENTER
+12:05:02 AM: 11/12: Deleting term: SHOPPES AT PARMA - OFFICE
+12:05:02 AM: 12/12: Deleting term: SHOPPES AT PARMA - PLAZA
+
+[EOF]

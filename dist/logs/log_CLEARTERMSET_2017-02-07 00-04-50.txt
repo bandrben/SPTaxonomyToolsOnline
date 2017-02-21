@@ -1,0 +1,29 @@
+12:04:47 AM: SiteUrl: https://pecorep.sharepoint.com/sites/FilingCabinet
+12:04:47 AM: UserName: BSteinhauser@pecorep.onmicrosoft.com
+12:04:47 AM: Domain: 
+12:04:47 AM: IsSPOnline: True
+12:04:47 AM: TermStore: Taxonomy_BqOb8fDmcf9Re87EOUOAxQ==
+12:04:47 AM: TermGroup: Filing Cabinet
+12:04:47 AM: TermSet: Accounting Document Type
+12:04:47 AM: TermStoreID: be7b242d-8119-4d5e-b151-d39a0d22db80
+12:04:47 AM: TermGroupID: c8197592-636b-491e-8c2b-bb633e02e310
+12:04:47 AM: TermSetID: 71049570-335e-4674-b57e-c12048f05114
+12:04:47 AM: ---------------------------------------------
+12:04:48 AM: Site loaded: Filing Cabinet
+12:04:48 AM: Termstore loaded: Taxonomy_BqOb8fDmcf9Re87EOUOAxQ==
+12:04:48 AM: Termgroup loaded: Filing Cabinet
+12:04:48 AM: Termset loaded: Accounting Document Type
+12:04:49 AM: Root terms loaded: 11
+12:04:49 AM: 1/11: Deleting term: BANK STATEMENTS
+12:04:49 AM: 2/11: Deleting term: BUDGET
+12:04:49 AM: 3/11: Deleting term: CAM ADJUSTMENTS
+12:04:49 AM: 4/11: Deleting term: CAM/TAX RECONCILIATION
+12:04:49 AM: 5/11: Deleting term: FINANCIAL STATEMENT
+12:04:49 AM: 6/11: Deleting term: INTERIM CAM RECONCILIATIONS
+12:04:49 AM: 7/11: Deleting term: MISCELLANEOUS
+12:04:49 AM: 8/11: Deleting term: MORTGAGE STATEMENT
+12:04:49 AM: 9/11: Deleting term: PRIOR OWNER INFORMATION
+12:04:49 AM: 10/11: Deleting term: RENT ROLL
+12:04:49 AM: 11/11: Deleting term: UTILITY BILLINGS
+
+[EOF]

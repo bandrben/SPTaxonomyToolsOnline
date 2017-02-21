@@ -1,0 +1,10 @@
+12:16:10 AM: Site loaded: Filing Cabinet
+12:16:11 AM:  - found # termstores: 1
+12:16:11 AM:  -- found # termgroups: 5
+12:16:11 AM:  --- found # termsets: 3
+12:16:11 AM:  --- found # termsets: 11
+12:16:11 AM:  --- found # termsets: 3
+12:16:12 AM:  --- found # termsets: 4
+12:16:12 AM:  --- found # termsets: 3
+
+[EOF]

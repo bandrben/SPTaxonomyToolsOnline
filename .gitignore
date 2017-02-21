@@ -253,5 +253,6 @@ _Pvt_Extensions
 [Ll]ib/
 # *.exe
 # *.dll
-*.dat
-*.manifest
+.dat
+.manifest
+logs/
